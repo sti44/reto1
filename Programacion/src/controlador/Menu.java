@@ -29,25 +29,26 @@ public class Menu {
 			
 			try {
 				if(opcion >= 1 && opcion <= 5) {
-					
+					valido = true;
+				} else {
+					System.out.println("Opcion no valida");
 				}
+			}catch(NumberFormatException e){
+				System.out.println("Introduce un numero valido");
 			}
 		}
-			if(opcion <= 4) {
-				opcionTipoProductos(opcion);
-			}else {
+			if(opcion == 5) {
 				System.out.println("¿Desea salir? \n Pulse S si si \n Pulse N si no");
-				String S = "S"; 
-				S = sc.nextLine();
-				String N = "N"; 
-				N = sc.nextLine();
-				if(S.equals(S)) {
+				String respuesta = sc.nextLine().trim().toUpperCase(); 
+				
+				if(respuesta.equals("S")) {
 					mostrarBienvenida();
-					}else if (N.equals(N)) {
-						mostrarTipoProductos();
-					}else {
-						System.out.println("Pulse S o N");
-					}
+				}else {
+					mostrarTipoProductos();
+				}
+				
+			}else {
+				opcionTipoProductos(opcion);
 			}
 		return opcion;
 	}
@@ -69,6 +70,7 @@ public class Menu {
 			System.out.println("\t 2. Sabor marisco \t");
 			System.out.println("\t 3. Sabor cerdo \t");
 			System.out.println("\t 4. Picante \t");
+			mostrarCarrito();
 			break;
 		case 3:
 			System.out.println("=============== Bebidas ===============");
@@ -76,6 +78,7 @@ public class Menu {
 			System.out.println("\t 2. Soda Yoongi \t");
 			System.out.println("\t 3. Monster Energy \t");
 			System.out.println("\t 4. Soda sabor naranja \t");
+			mostrarCarrito();
 			break;
 		case 4:
 			System.out.println("=============== Snacks ===============");
@@ -83,6 +86,7 @@ public class Menu {
 			System.out.println("2. Pockys");
 			System.out.println("3. Chicles");
 			System.out.println("4. Patatas Chipstar");
+			mostrarCarrito();
 			break;
 		default:
 			System.out.println("Numero seleccionado incorrecto");
@@ -92,7 +96,7 @@ public class Menu {
 	}
 
 	private static void mostrarCarrito() {
-		
+		System.out.println("hola soy el carrito jeje");
 		
 	}
 
