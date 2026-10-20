@@ -1,4 +1,39 @@
+/* Color general de toda la página */
+html {
+    background-color: #f8e4e9;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Iconos de redes sociales */
 .icono {
     width: 2em;
     height: 2em;
+}
+
+/* Tabla */
+
+.descripcion {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+
+.fila {
+    height: 25px;
+
 }
