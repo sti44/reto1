@@ -7,10 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		Menu.mostrarBienvenida();
         
-        int opcion;
+        int opcion = Menu.mostrarTipoProductos();
        
         do { 
-            opcion = Menu.mostrarTipoProductos();
             Menu.opcionTipoProductos(opcion);
             
         } while (opcion != 5);
