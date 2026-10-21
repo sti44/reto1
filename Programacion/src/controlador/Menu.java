@@ -5,7 +5,15 @@ import java.util.Scanner;
 public class Menu {
 	
 	private static Scanner sc = new Scanner(System.in);
+	private static String[][] productos = {
+				{"S", "M", "L", "XL"},
+				{"Ramen pollo", "Ramen marisco", "Ramen cerdo", "Ramen picante"},
+				{"Cafe", "Soda Yoongi", "Monster Energy", "Soda naranja"},
+				{"Orio", "Pockys", "Chicles sabor BTS", "Patatas Chipstar"}};
 	
+	private static double[][] precios = {
+			{"10.00", "15.00", }
+	}
 	public static void mostrarBienvenida() {
 		System.out.println("***********************************************");
 		System.out.println("*  Bienvenido a la máquina Elorrieta Vending  *");
