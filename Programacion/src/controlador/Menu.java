@@ -92,7 +92,12 @@ public class Menu {
 	}
 
 	private static void mostrarCarrito() {
-		System.out.println("hola soy el carrito jeje");
+		
+		System.out.println("********************************************");
+		System.out.println("*	  	                           *");
+		System.out.println("*	  hola soy el carrito jeje	   *");
+		System.out.println("*	  	                           *");
+		System.out.println("********************************************");
 		
 	}
 
