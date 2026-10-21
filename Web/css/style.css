@@ -14,15 +14,15 @@ html {
 
 
 body {
-    
     height: 100%;
+    line-height: 1.6em;
     display: flex;
     flex-direction: column;
 }
 
 /* Colocamos los elementos del nav en el centro*/
 header {  
-    height: 10%;  
+    height: 20%;  
     display: flex;
     align-items:center;
     justify-content: center;
@@ -50,11 +50,20 @@ nav a {
     font-weight: 900;
 }
 
+/*Añadimos margen arriba y abajo del main*/
 main {
-    margin: 20px 0 20px 0;
+    margin: 0px 0 20px 0;
 }
 
-#
+/*Tamaño del banner*/
+#banner img {
+    width: 100%;
+    height: auto;
+}
+
+#quienes-somos {
+    margin: 20px 10px 20px 10px;
+}
 
 /* Tabla */
 
