@@ -5,34 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elorrieta-Vending</title>
+<!--Enlace con nuestro css-->
     <link rel="stylesheet" href="css/style.css">
+<!--Enlace con las fuentes de Google Fonts elegidas-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Doppio+One&family=Inconsolata:wght@200..900&family=Jolly+Lodger&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav>
-            <button><a href="index.html">Inicio</a></button>
-            <button><a href="productos-sorpresa.html">Caja Sorpresa</a></button>
-            <button><a href="productos-ramen.html">Ramen</a></button>
-            <button><a href="productos-bebidas.html">Bebidas</a></button>
-            <button><a href="productos-snacks.html">Snacks</a></button>
-            <button><a href="contacto.html">Contacto</a></button>
+            <a href="index.html">Inicio</a>
+            <a href="productos-sorpresa.html">Caja Sorpresa</a>
+            <a href="productos-ramen.html">Ramen</a>
+            <a href="productos-bebidas.html">Bebidas</a>
+            <a href="productos-snacks.html">Snacks</a>
+            <a href="contacto.html">Contacto</a>
         </nav>
 
     </header>
-    <!-- Imagen de halloween -->
+    
     <main>
+        <!-- Imagen de halloween -->
         <section id="banner">
-            <img src="./Imagenes/Vending prueba.png" alt="Elorrieta-Vending" height="250">
+            <img src="./Imagenes/banner-principal.png" alt="Elorrieta-Vending" height="250">
         </section>
         <!-- Quienes somos -->
         <section id="quienes-somos" >
-            <h2>¿Quienes somos?</h2>
+            <h2>¿Qui&eacute;nes somos?</h2>
             <p>En Elorrieta Vending somos una empresa dedicada a ofrecer una
                 experiencia diferente a través de nuestras máquinas
                 expendedoras.
@@ -47,57 +48,33 @@
                 favoritos de Japón de forma rápida y sencilla.
             </p>
         </section>
-        <!-- Vista previa con fotos a los lados -->
-        <section class="vista_previa" id="vista-previa">
-            <div class="tabla">
-                <table border="1">
-                    <tr>
-                        <!-- Poner imagen a la izquierda -->
-                        <td class="imagen_bebidas">Bebidas</td>
-                        <td class="imagen_ramen">Ramen</td>
-                        <td class="imagen_caja">Cajas Sorpresa</td>
-                        <td class="imagen_snacks">Snacks</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="fila" src="./Imagenes/Soda_yoongi.png" /> Texto
-                            que explique la bebida
-                        </td>
-                        <td> <img class="fila" src="./Imagenes/Ramen_de_cerdo.png" /> Texto
-                            que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Caja_sorpresa_M.png" />
-                            Texto que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Orio.png" />
-                            Texto que
-                            explique la bebida</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="fila" src="./Imagenes/Soda_yoongi.png" /> Texto
-                            que explique la bebida
-                        </td>
-                        <td> <img class="fila" src="./Imagenes/Ramen_de_cerdo.png" /> Texto
-                            que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Caja_sorpresa_M.png" />
-                            Texto que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Orio.png" />
-                            Texto que
-                            explique la bebida</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="fila" src="./Imagenes/Soda_yoongi.png" /> Texto
-                            que explique la bebida
-                        </td>
-                        <td> <img class="fila" src="./Imagenes/Ramen_de_cerdo.png" /> Texto
-                            que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Caja_sorpresa_M.png" />
-                            Texto que explique la bebida</td>
-                        <td> <img class="fila" src="./Imagenes/Orio.png" />
-                            Texto que
-                            explique la bebida</td>
-                    </tr>
-                </table>
+        <!-- Vista previa de tipo de productos -->
+        <section id="vista-previa-productos">
+            <h2>Nuestros productos</h2>
+            <div class="contenedor-tarjetas">
+                <a href="productos-bebidas.html" class="tarjeta-producto">
+                    <h3>Bebidas</h3>
+                    <img src="Imagenes/Soda_yoongi.png" alt="Lata de refresco Yoongi de uva">
+                    <p>Premia a tu cuerpo con nuestras bebidas m&aacute;s refrescantes y recupera tu ener&iacute;a disfrutando de nuestros sabores &uacute;nicos.</p>
+                </a>
+                <a href="productos-ramen.html" class="tarjeta-producto">
+                    <h3>Ramen</h3>
+                    <img src="Imagenes/Ramen_de_cerdo.png" alt="Ramen con sabor a cerdo">
+                    <p>Sabroso ramen de tu sabor favorito. Nuestro caldo es cocinado a fuego lento, resultando cremoso y lleno de umami. Los fideos de trigo retienen todo el sabor 
+                        y los vegetales y huevos frescos dan el contrapunto m&aacute;s equilibrado.</p>
+                </a>
+                <a href="productos-snacks.html" class="tarjeta-producto">
+                    <h3>Snacks</h3>
+                    <img src="Imagenes/Orio.png" alt="Galletas Orio con relleno sabor Matcha">
+                    <p>Nuestros bocaditos de intensos sabores no te dejar&aacute;n indeferente cuando te acompañen en tus momentos m&aacute;s memorables. </p>
+                </a>
+                <a href="productos-sorpresa.html" class="tarjeta-producto">
+                    <h3>Cajas Sorpresa</h3>
+                    <img src="Imagenes/Caja_sorpresa_M.png" alt="Caja tamaño M con productos sorpresa">
+                    <p>Para las personas indecisas o ambiciosas tenemos unas cajitas especiales para que no te quedes con las ganas de probar un poquito de todo. 
+                        Un detalle para regalar o para experimentar un poquito de Japón al momento. Diferentes tamaños disponibles.
+                    </p>
+                </a>
             </div>
         </section>
     </main>
