@@ -22,11 +22,11 @@ public class Admin {
 	}
 
 	public static void validarClave() {
-		System.out.println();
+		
 		String claveIntroducida = sc.next();
 		
 		if (claveIntroducida.equalsIgnoreCase(claveAdmin)) {
-			System.out.println("Modo Empleado Activado");
+			System.out.print("Modo Empleado Activado");
 		} else {
 			System.out.println("Contraseña Incorrecta. Inténtelo de nuevo.");
 			Menu.mostrarBienvenida();
