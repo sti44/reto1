@@ -77,7 +77,7 @@ public class Menu {
 		switch (opcion) {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
-			opcionProductos();
+			opcionProductos(0);
 			System.out.println("¿Desea añadir más productos?");
 			String respuesta = sc.nextLine().trim().toUpperCase();
 
@@ -91,14 +91,17 @@ public class Menu {
 			break;
 		case 2:
 			System.out.println("=============== Ramen ===============");
+			opcionProductos(1);
 			mostrarCarrito();
 			break;
 		case 3:
 			System.out.println("=============== Bebidas ===============");
+			opcionProductos(2);
 			mostrarCarrito();
 			break;
 		case 4:
 			System.out.println("=============== Snacks ===============");
+			opcionProductos(3);
 			mostrarCarrito();
 			break;
 		default:
@@ -108,25 +111,42 @@ public class Menu {
 
 	}
 
-	public static void opcionProductos() {
+	public static void opcionProductos(int opcion) {
 		/* hacer un switch para poner directamente en cada coso el numero y ya */
-		for (int i = 0; i < productos[0].length; i++) {
-			System.out.println((i + 1) + ". " + productos[0][i] + "\t" + precios[0][i] + " €");
-		}
+		switch (opcion) {
+		case 0:
+			for (int i = 0; i < productos[0].length; i++) {
+				System.out.println((i + 1) + ". " + productos[0][i] + "\t" + precios[0][i] + " €");
+			}
+			break;
+		case 1:
+			for (int i = 0; i < productos[1].length; i++) {
+				System.out.printf((i + 1) + ". " + productos[1][i] + "\t" + precios[1][i] + " €");
+			}
+			break;
+		case 2:
+			for (int i = 0; i < productos[2].length; i++) {
+				System.out.printf((i + 1) + ". " + productos[2][i] + "\t" + precios[2][i] + " €");
+			}
+			break;
+		case 3:
+			for (int i = 0; i < productos[3].length; i++) {
+				System.out.printf((i + 1) + ". " + productos[3][i] + "\t" + precios[3][i] + " €");
+			}
+			break;
 
-		for (int i = 0; i < productos[1].length; i++) {
-			System.out.printf((i + 1) + ". " + productos[1][i] + "\t" + precios[1][i] + " €");
-		}
-		
-		for (int i = 0; i < productos[2].length; i++) {
-			System.out.printf((i + 1) + ". " + productos[2][i] + "\t" + precios[2][i] + " €");
-		}
-		
-		for (int i = 0; i < productos[3].length; i++) {
-			System.out.printf((i + 1) + ". " + productos[3][i] + "\t" + precios[3][i] + " €");
+		default:
+			break;
 		}
 		
 		
+
+		
+
+		
+
+		
+
 	}
 
 	public static void mostrarCarrito() {
