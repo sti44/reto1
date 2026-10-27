@@ -1,7 +1,4 @@
 package controlador;
-
-import java.awt.print.Printable;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Menu {
@@ -78,31 +75,22 @@ public class Menu {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
 			opcionProductos(0);
-			System.out.println("¿Desea añadir más productos?");
-			String respuesta = sc.nextLine().trim().toUpperCase();
-
-			if (respuesta.equals("S")) {
-				mostrarTipoProductos();
-			} else if (respuesta.equals("N")) {
-				mostrarCarrito();
-			} else {
-				System.out.println("Opcion incorrecta, di ");
-			}
+			preguntarMasProductos();
 			break;
 		case 2:
 			System.out.println("=============== Ramen ===============");
 			opcionProductos(1);
-			mostrarCarrito();
+			preguntarMasProductos();
 			break;
 		case 3:
 			System.out.println("=============== Bebidas ===============");
 			opcionProductos(2);
-			mostrarCarrito();
+			preguntarMasProductos();
 			break;
 		case 4:
 			System.out.println("=============== Snacks ===============");
 			opcionProductos(3);
-			mostrarCarrito();
+			preguntarMasProductos();
 			break;
 		default:
 			System.out.println("Numero seleccionado incorrecto");
@@ -110,41 +98,51 @@ public class Menu {
 		}
 
 	}
+	public static void mostrarProductosSeleccionados() {
+		
+		
+	}
+	
+	public static void preguntarMasProductos() {
+		System.out.println("¿Desea añadir más productos? 'S' para si 'N' para no");
+		String respuesta = sc.nextLine().trim().toUpperCase();
 
+		if (respuesta.equals("S")) {
+			mostrarTipoProductos();
+		} else if (respuesta.equals("N")) {
+			mostrarCarrito();
+		} else {
+			System.out.println("Opcion incorrecta, pon S o N ");
+		}
+	}
+	
 	public static void opcionProductos(int opcion) {
-		/* hacer un switch para poner directamente en cada coso el numero y ya */
+		/* switch para poner directamente en cada opcion el numero y ya */
 		switch (opcion) {
 		case 0:
 			for (int i = 0; i < productos[0].length; i++) {
-				System.out.println((i + 1) + ". " + productos[0][i] + "\t" + precios[0][i] + " €");
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[0][i], precios[0][i]);
 			}
 			break;
 		case 1:
 			for (int i = 0; i < productos[1].length; i++) {
-				System.out.printf((i + 1) + ". " + productos[1][i] + "\t" + precios[1][i] + " €");
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[1][i], precios[1][i]);
 			}
 			break;
 		case 2:
 			for (int i = 0; i < productos[2].length; i++) {
-				System.out.printf((i + 1) + ". " + productos[2][i] + "\t" + precios[2][i] + " €");
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[2][i], precios[2][i]);
 			}
 			break;
 		case 3:
 			for (int i = 0; i < productos[3].length; i++) {
-				System.out.printf((i + 1) + ". " + productos[3][i] + "\t" + precios[3][i] + " €");
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[3][i], precios[3][i]);
 			}
 			break;
 
 		default:
 			break;
 		}
-		
-		
-
-		
-
-		
-
 		
 
 	}
@@ -158,5 +156,7 @@ public class Menu {
 		System.out.println("********************************************");
 
 	}
+
+	
 
 }
