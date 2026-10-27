@@ -5,12 +5,12 @@ public class Menu {
 
 	private static Scanner sc = new Scanner(System.in);
 	// Arrays bidimensionales
-	private static String[][] productos = { { "S", "M", "L", "XL" },
+	public static String[][] productos = { { "S", "M", "L", "XL" },
 			{ "Ramen pollo", "Ramen marisco", "Ramen cerdo", "Ramen picante" },
 			{ "Cafe", "Soda Yoongi", "Monster Energy", "Soda naranja" },
 			{ "Orio", "Pockys", "Chicles sabor BTS", "Patatas Chipstar" } };
 
-	private static double[][] precios = { { 10.00, 15.00, 25.00, 30.00 }, { 5.00, 4.50, 5.00, 5.00 },
+	public static double[][] precios = { { 10.00, 15.00, 25.00, 30.00 }, { 5.00, 4.50, 5.00, 5.00 },
 			{ 1.50, 2.50, 3.00, 2.00 }, { 2.00, 2.50, 5.00, 3.00 } };
 
 	// Mostrar la bienvenida
@@ -77,6 +77,9 @@ public class Menu {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
 			opcionProductos(0);
+			int seleccion = Integer.valueOf(sc.nextLine());
+			Compra.anadirProducto(opcion, seleccion - 1);
+			Compra.mostrarProductosSeleccionados();
 			preguntarMasProductos();
 			break;
 		case 2:
@@ -123,22 +126,22 @@ public class Menu {
 		switch (opcion) {
 		case 0:
 			for (int i = 0; i < productos[0].length; i++) {
-				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[0][i], precios[0][i]);
+				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[0][i], precios[0][i]);
 			}
 			break;
 		case 1:
 			for (int i = 0; i < productos[1].length; i++) {
-				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[1][i], precios[1][i]);
+				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[1][i], precios[1][i]);
 			}
 			break;
 		case 2:
 			for (int i = 0; i < productos[2].length; i++) {
-				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[2][i], precios[2][i]);
+				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[2][i], precios[2][i]);
 			}
 			break;
 		case 3:
 			for (int i = 0; i < productos[3].length; i++) {
-				System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[3][i], precios[3][i]);
+				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[3][i], precios[3][i]);
 			}
 			break;
 
