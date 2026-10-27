@@ -21,8 +21,9 @@ public class Menu {
 		System.out.println();
 		System.out.println("Presione ENTER para continuar...");
 		// Si desea entrar como administrador pulse ñ y ENTER
+		//sc.nextLine();
 		Admin.loginAdmin();
-		sc.nextLine();
+		
 	}
 
 	// Mostrar los tipos de productos

@@ -12,24 +12,25 @@ public class Admin {
 	// Validar si el usuario y contraseña de admin es correcto
 	// Si no es correcto, vuelve a la Bienvenida del programa
 	public static void loginAdmin() {
-		String usuarioIntroducido = sc.next();
+		String usuarioIntroducido = sc.nextLine();
 		
 		if (usuarioIntroducido.equalsIgnoreCase(userAdmin)) {
 			validarClave();
 		} else {
-			Menu.mostrarBienvenida();
+			Menu.mostrarTipoProductos();
 		}
 	}
 
 	public static void validarClave() {
 		
-		String claveIntroducida = sc.next();
+		String claveIntroducida = sc.nextLine();
 		
 		if (claveIntroducida.equalsIgnoreCase(claveAdmin)) {
 			System.out.print("Modo Empleado Activado");
 		} else {
 			System.out.println("Contraseña Incorrecta. Inténtelo de nuevo.");
 			Menu.mostrarBienvenida();
+			sc.nextLine();
 		}
 		
 	}
