@@ -1,11 +1,12 @@
 /*Paleta de colores*/
 :root {
-  --naranja-claro: #FF9C5D;
-  --naranja: #FF7D19;
-  --negro: #000000;
-  --morado: #ff154f;
-  --morado-claro: #AF82FF;
-  --fondo-tarjeta: #f7e17c59;
+    --naranja-claro: #FF9C5D;
+    --naranja: #FF7D19;
+    --negro: #000000;
+    --rosa-fuerte: #ff154f;
+    --morado-claro: #AF82FF;
+    --fondo-tarjeta: #f7e17c59;
+    --fondo-tarjeta-hover: #64b1c957;
 }
 
 
@@ -16,7 +17,7 @@
 
 body {
     margin: 0;
-    font-family: "Space Grotesk", "Montserrat" , "Lato", sans-serif;
+    font-family: "Space Grotesk", "Montserrat", "Lato", sans-serif;
     font-size: 1em;
     font-weight: 400;
     line-height: 1.6em;
@@ -63,8 +64,9 @@ nav a:hover {
     padding: 40px 20px;
     text-align: center;
 }
+
 #quienes-somos h2 {
-    color: var(--morado);
+    color: var(--rosa-fuerte);
     font-size: 2em;
 }
 
@@ -82,7 +84,7 @@ nav a:hover {
 
 #vista-previa-productos h2 {
     padding-bottom: 30px;
-    color: var(--morado);
+    color: var(--rosa-fuerte);
     font-size: 2em;
 }
 
@@ -113,15 +115,55 @@ nav a:hover {
     color: var(--naranja);
 }
 
-.tarjeta-producto img{
+.tarjeta-producto img {
     width: 10rem;
     margin: 10px;
 }
 
-.tarjeta-producto p{
+.tarjeta-producto p {
     width: 100%;
 }
 
+.tarjeta-producto:hover {
+    background-color: var(--fondo-tarjeta-hover);
+    box-shadow: 6px 6px 6px -3px rgba(0, 0, 0, 0.1);
+}
+
+/*Estilo del footer*/
+footer {
+    background-color: var(--negro);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+#redes-sociales {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer p {
+    color: var(--morado-claro);
+}
+
+footer a {
+    color: var(--morado-claro);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 .icono {
-    width: 2rem;
+    width: 2.2rem;
+}
+
+.icono:hover {
+    width: 2.8rem;
 }
