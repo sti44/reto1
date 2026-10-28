@@ -1,6 +1,4 @@
 package modelo;
-
-import controlador.Admin;
 import controlador.Menu;
 
 public class Main {

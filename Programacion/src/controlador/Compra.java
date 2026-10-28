@@ -26,8 +26,9 @@ public class Compra {
 	}
 
 	public static void mostrarProcesoDePago() {
-
-		
+		System.out.println("********************************");
+		System.out.println("hola soy el proceso de pago jeje");
+		System.out.println("********************************");
 	}
 
 

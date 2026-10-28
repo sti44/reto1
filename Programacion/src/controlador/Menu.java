@@ -78,6 +78,7 @@ public class Menu {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
 			opcionProductos(0);
+			preguntarMasProductos();
 			break;
 		case 2:
 			System.out.println("=============== Ramen ===============");
@@ -96,14 +97,13 @@ public class Menu {
 			break;
 		default:
 			System.out.println("Numero seleccionado incorrecto");
+			mostrarTipoProductos();
 			break;
 		}
 
 	}
 
-	public static void mostrarProductosSeleccionados() {
-
-	}
+	
 
 	public static int preguntarMasProductos() {
 		int opcion = 0;
@@ -135,8 +135,10 @@ public class Menu {
 			Compra.anadirProducto(productos[opcion][seleccion - 1], precios[opcion][seleccion - 1]);
 			System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
 			Compra.mostrarProductosSeleccionados();
+		} else if (seleccion > 4){
+			System.out.println("Opcion no valida, vuelva a intentarlo.");
 		} else {
-			System.out.println("Opcion no valida");
+			opcionProductos(opcion);
 		}
 	}
 
