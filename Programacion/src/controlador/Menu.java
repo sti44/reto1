@@ -31,7 +31,7 @@ public class Menu {
 		int opcion = 0;
 		boolean valido = false;
 		while (!valido) {
-			System.out.println("\nSeleccione una categoría de productos:");
+			System.out.println("\nSeleccione un tipo de producto:");
 			System.out.println("1. Caja sorpresa");
 			System.out.println("2. Ramen");
 			System.out.println("3. Bebidas");
@@ -77,10 +77,11 @@ public class Menu {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
 			opcionProductos(0);
-			int seleccion = Integer.valueOf(sc.nextLine());
-			Compra.anadirProducto(opcion, seleccion - 1);
-			Compra.mostrarProductosSeleccionados();
-			preguntarMasProductos();
+			if() {
+				preguntarMasProductos();
+			}else {
+				
+			}
 			break;
 		case 2:
 			System.out.println("=============== Ramen ===============");
@@ -108,58 +109,51 @@ public class Menu {
 		
 	}
 	
-	public static void preguntarMasProductos() {
-		System.out.println("¿Desea añadir más productos? 'S' para si 'N' para no");
-		String respuesta = sc.nextLine().trim().toUpperCase();
-
-		if (respuesta.equals("S")) {
-			mostrarTipoProductos();
-		} else if (respuesta.equals("N")) {
-			mostrarCarrito();
+	public static int preguntarMasProductos() {
+		int opcion = 0;
+		if (opcion == 4) {
+			System.out.println("¿Desea añadir más productos? 'S' para si 'N' para no");
+			String respuesta = sc.nextLine().trim().toUpperCase();
+	
+			if (respuesta.equals("S")) {
+				mostrarTipoProductos();
+			} else if (respuesta.equals("N")) {
+				mostrarCarrito();
+			} else {
+				System.out.println("Opcion incorrecta, pon S o N ");
+			}
 		} else {
-			System.out.println("Opcion incorrecta, pon S o N ");
+			opcionTipoProductos(opcion);
 		}
+		return opcion;
 	}
 	
 	public static void opcionProductos(int opcion) {
-		/* switch para poner directamente en cada opcion el numero y ya */
-		switch (opcion) {
-		case 0:
-			for (int i = 0; i < productos[0].length; i++) {
-				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[0][i], precios[0][i]);
-			}
-			break;
-		case 1:
-			for (int i = 0; i < productos[1].length; i++) {
-				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[1][i], precios[1][i]);
-			}
-			break;
-		case 2:
-			for (int i = 0; i < productos[2].length; i++) {
-				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[2][i], precios[2][i]);
-			}
-			break;
-		case 3:
-			for (int i = 0; i < productos[3].length; i++) {
-				System.out.printf("%d. %s - %.2f €%n", (i + 1), productos[3][i], precios[3][i]);
-			}
-			break;
+	    for (int i = 0; i < productos[opcion].length; i++) {
+	        System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[opcion][i], precios[opcion][i]);
+	    }
+	    System.out.println("Selecciona el producto que deseas comprar:");
 
-		default:
-			break;
-		}
-		
-
+	    int seleccion = Integer.valueOf(sc.nextLine());
+	    if (seleccion >= 1 && seleccion <= productos[opcion].length) {
+	        Compra.anadirProducto(productos[opcion][seleccion - 1], precios[opcion][seleccion - 1]);
+	        System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
+	        Compra.mostrarProductosSeleccionados();
+	    } else {
+	        System.out.println("Opcion no valida");
+	    }
 	}
 
 	public static void mostrarCarrito() {
-
 		System.out.println("********************************************");
 		System.out.println("*	  	                           *");
 		System.out.println("*	  hola soy el carrito jeje	   *");
 		System.out.println("*	  	                           *");
 		System.out.println("********************************************");
-
+		Compra.mostrarProductosSeleccionados();
+		System.out.println("Desea comprar los productos seleccionados? (S/N)");
+		Compra.mostrarProcesoDePago();
+		
 	}
 
 	
