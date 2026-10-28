@@ -1,4 +1,5 @@
 package controlador;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -19,11 +20,11 @@ public class Menu {
 		System.out.println("*  Bienvenido a la máquina Elorrieta Vending  *");
 		System.out.println("***********************************************");
 		System.out.println();
-		System.out.println("Presione ENTER para continuar...");
+		System.out.println("Presione cualquier tecla para continuar...");
 		// Si desea entrar como administrador pulse ñ y ENTER
-		//sc.nextLine();
+		// sc.nextLine();
 		Admin.loginAdmin();
-		
+
 	}
 
 	// Mostrar los tipos de productos
@@ -77,11 +78,6 @@ public class Menu {
 		case 1:
 			System.out.println("=============== Caja sorpresa ===============");
 			opcionProductos(0);
-			if() {
-				preguntarMasProductos();
-			}else {
-				
-			}
 			break;
 		case 2:
 			System.out.println("=============== Ramen ===============");
@@ -104,17 +100,17 @@ public class Menu {
 		}
 
 	}
+
 	public static void mostrarProductosSeleccionados() {
-		
-		
+
 	}
-	
+
 	public static int preguntarMasProductos() {
 		int opcion = 0;
 		if (opcion == 4) {
 			System.out.println("¿Desea añadir más productos? 'S' para si 'N' para no");
 			String respuesta = sc.nextLine().trim().toUpperCase();
-	
+
 			if (respuesta.equals("S")) {
 				mostrarTipoProductos();
 			} else if (respuesta.equals("N")) {
@@ -127,21 +123,21 @@ public class Menu {
 		}
 		return opcion;
 	}
-	
-	public static void opcionProductos(int opcion) {
-	    for (int i = 0; i < productos[opcion].length; i++) {
-	        System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[opcion][i], precios[opcion][i]);
-	    }
-	    System.out.println("Selecciona el producto que deseas comprar:");
 
-	    int seleccion = Integer.valueOf(sc.nextLine());
-	    if (seleccion >= 1 && seleccion <= productos[opcion].length) {
-	        Compra.anadirProducto(productos[opcion][seleccion - 1], precios[opcion][seleccion - 1]);
-	        System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
-	        Compra.mostrarProductosSeleccionados();
-	    } else {
-	        System.out.println("Opcion no valida");
-	    }
+	public static void opcionProductos(int opcion) {
+		for (int i = 0; i < productos[opcion].length; i++) {
+			System.out.printf("%d. %s \t %.2f €%n", (i + 1), productos[opcion][i], precios[opcion][i]);
+		}
+		System.out.println("Selecciona el producto que deseas comprar:");
+
+		int seleccion = Integer.valueOf(sc.nextLine());
+		if (seleccion >= 1 && seleccion <= productos[opcion].length) {
+			Compra.anadirProducto(productos[opcion][seleccion - 1], precios[opcion][seleccion - 1]);
+			System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
+			Compra.mostrarProductosSeleccionados();
+		} else {
+			System.out.println("Opcion no valida");
+		}
 	}
 
 	public static void mostrarCarrito() {
@@ -153,9 +149,7 @@ public class Menu {
 		Compra.mostrarProductosSeleccionados();
 		System.out.println("Desea comprar los productos seleccionados? (S/N)");
 		Compra.mostrarProcesoDePago();
-		
-	}
 
-	
+	}
 
 }
