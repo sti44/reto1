@@ -100,28 +100,25 @@ public class Menu {
 			mostrarTipoProductos();
 			break;
 		}
-
 	}
 
-	
-
-	public static int preguntarMasProductos() {
-		int opcion = 0;
-		if (opcion == 4) {
-			System.out.println("¿Desea añadir más productos? 'S' para si 'N' para no");
-			String respuesta = sc.nextLine().trim().toUpperCase();
-
-			if (respuesta.equals("S")) {
-				mostrarTipoProductos();
-			} else if (respuesta.equals("N")) {
-				mostrarCarrito();
-			} else {
-				System.out.println("Opcion incorrecta, pon S o N ");
-			}
-		} else {
-			opcionTipoProductos(opcion);
-		}
-		return opcion;
+	public static boolean preguntarMasProductos() {
+		boolean respuestaValida = false;
+	    boolean continuarComprando = false;
+	    while (!respuestaValida) {
+	        System.out.println("\n¿Desea añadir más productos? (Introduce 'S' para si o 'N' para no)");
+	        String respuesta = sc.nextLine().trim().toUpperCase();
+	        if (respuesta.equals("S")) {	
+	        	continuarComprando = true; // seguir comprando
+	            respuestaValida = true;    // sale del bucle
+	        } else if (respuesta.equals("N")) {
+	        	continuarComprando = false; // carrito
+	            respuestaValida = true;     // sale del bucle
+	        } else {
+	        	System.out.println("Opcion incorrecta, introduce 'S' o 'N'");
+	        }
+	    }
+	    return continuarComprando;
 	}
 
 	public static void opcionProductos(int opcion) {
