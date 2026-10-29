@@ -96,10 +96,11 @@ public class Admin {
 		switch (opcion) {
 		case 1:
 			System.out.println("Nuevo Producto");
-			nuevoProducto();
+			nuevoProducto(1);
 			break;
 		case 2:
 			System.out.println("Modificar Producto");
+			
 			break;
 		case 3:
 			System.out.println("Eliminar Producto");
@@ -111,9 +112,32 @@ public class Admin {
 
 	}
 
-	public static void nuevoProducto() {
+	public static void nuevoProducto(int numeroElegidoParaCambiarProducto) {
+
 		menuTipoDeProducto();
 		System.out.println("Lista de productos actuales: ");
+
+		switch (numeroElegidoParaCambiarProducto) {
+		case 1:
+			for (int i = 0; i < Menu.productos[numeroElegidoParaCambiarProducto].length; i++) {
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), Menu.productos[numeroElegidoParaCambiarProducto][i], Menu.precios[numeroElegidoParaCambiarProducto][i]);
+			}
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			break;
+		}
 
 	}
 
