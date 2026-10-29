@@ -17,7 +17,7 @@ public class Compra {
 	
 	public static void mostrarProductosSeleccionados() {
 	    if (cantidadProductos == 0) {
-	        System.out.println("Todavia no has seleccionado ningún producto");
+	        System.out.println("Todavia no has seleccionado ningun producto");
 	    } else {
 	        for (int i = 0; i < cantidadProductos; i++) {
 	            System.out.println((i + 1) + ". " + carrito[i] + " - " + preciosCarrito[i] + " €");
