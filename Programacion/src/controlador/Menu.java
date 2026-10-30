@@ -16,9 +16,6 @@ public class Menu {
 		System.out.println("***********************************************");
 		System.out.println();
 		System.out.println("Presione cualquier tecla para continuar...");
-		// Si desea entrar como administrador pulse ñ y ENTER
-		// sc.nextLine();
-		Admin.loginAdmin();
 
 	}
 
@@ -47,7 +44,7 @@ public class Menu {
 				System.out.println("Introduce un numero valido");
 			}
 		}
-		// Validacion de la opcion de salir
+		// Validacion de la opcion de salir para usuario
 		if (opcion == 5) {
 			System.out.println("¿Desea salir? \n Pulse S si si \n Pulse N si no");
 			String respuesta = sc.nextLine().trim().toUpperCase();
@@ -150,6 +147,21 @@ public class Menu {
         } else {
         	System.out.println("Opcion incorrecta, introduce 'S' o 'N'");
         }
+	}
+	
+	public static void mostrarMenuAdmin() {
+		System.out.println("===============================================");
+		System.out.println("             Opciones de Empleado              ");
+		System.out.println("===============================================");
+		System.out.println();
+		System.out.println("RECUERDE: ");
+		System.out.println();
+		System.out.println("Debe haber un máximo de 5 productos por cada tipo.");
+		System.out.println();
+		System.out.println("1. Añadir nuevo Producto");
+		System.out.println("2. Modificar Producto");
+		System.out.println("3. Eliminar Producto");
+		System.out.println("4. Salir");
 	}
 
 }
