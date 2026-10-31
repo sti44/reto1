@@ -15,6 +15,10 @@ public class Compra {
 		}
 	}
 
+	public static double total = 0;
+
+	public static double dineroIntroducido = 0;
+
 	public static void mostrarProductosSeleccionados() {
 		if (cantidadProductos == 0) {
 			System.out.println("Todavia no has seleccionado ningun producto");
@@ -35,10 +39,10 @@ public class Compra {
 	public static void calcularPago() {
 		mostrarProductosSeleccionados();
 		double total = 0;
-		
-	
-		
+
 	}
+
+	public static double[] dineroPermitido = { 0.10, 0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00 };
 
 	public static void eliminarProductos(int borrarProducto) {
 
@@ -56,11 +60,28 @@ public class Compra {
 
 	}
 
+	public static void meterDinero() {
+
+		total = 0;
+
+		for (int i = 0; i < cantidadProductos; i++) {
+			total += preciosCarrito[i];
+		}
+
+		total = Math.round(total * 1.21 * 100) / 100.0;
+
+		System.out.println("====== INTRODUCIR DINERO =====");
+		System.out.println("Cantidad de productos: " + cantidadProductos);
+		System.out.println("Total con IVA: %.2f" + total);
+
+		for (int i = 0; i < dineroPermitido.length; i++) {
+			System.out.printf("Introducir", i + 1, dineroPermitido[i]);
+
+		}
+	}
+
 	public static void devolverDinero() {
 
 	}
 
-	public static void meterDinero() {
-
-	}
 }

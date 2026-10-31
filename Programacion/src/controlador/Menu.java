@@ -16,7 +16,6 @@ public class Menu {
 		System.out.println("***********************************************");
 		System.out.println();
 		System.out.println("Presione cualquier tecla para continuar...");
-
 	}
 
 	// Mostrar los tipos de productos

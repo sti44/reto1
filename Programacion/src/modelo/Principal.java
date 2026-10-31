@@ -7,6 +7,7 @@ public class Principal {
 		controlador.Menu.mostrarBienvenida();
 //		controlador.Admin.opcionesAdmin();
 		
+		
 	}
 
 	
