@@ -7,6 +7,8 @@
     --morado-claro: #AF82FF;
     --fondo-tarjeta: #f7e17c59;
     --fondo-tarjeta-hover: #64b1c957;
+    --fondo-producto: #f18749b9;
+    --descripcion-producto: #f8d86eb9;
 }
 
 
@@ -139,46 +141,70 @@ nav a:hover {
 
 /* Estilo productos descripción en páginas de productos*/
 .productos-descripcion {
-    margin: 2rem 6rem;
-    background-color: #AF82FF;
-    display: flex;
-    flex-direction: column;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
+/* Estilo título página*/
 .productos-descripcion h1 {
     text-align: center;
     color: var(--rosa-fuerte);
 }
 
+/* Estilo para el contenedor de los productos*/
 .contenedor-productos {
-    background-color: #FF9C5D;
-    width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
 }
 
+/* Estilo para cada artículo, contiene la imagen y descripción*/
+.producto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: var(--fondo-producto);
+    border-radius: 12px;
+}
+
+/* Imagen de artículo*/
 .contenedor-img {
-    background-color: #FF7D19;
-    width: 25rem;
     display: flex;
     justify-content: center;
+    flex: 0 0 25rem;
 }
 
 .contenedor-img img {
-    width: 20em;
+    display: block;
+    max-width: 100%;
     height: auto;
 }
 
+/* Nombre y descripción del artículo*/
 .contenedor-nombre-descripcion {
-    background-color: aquamarine;
-    padding: 1rem 2rem;
-    
+    background-color: var(--descripcion-producto);
+    flex: 1;
+    min-width: 0;
+    padding: 1rem;
+    border-radius: 12px;
 }
 
+/* Cambio a columna cuando la ventana tenga 700px o menos*/
+@media (max-width: 700px) {
+    .producto {
+        flex-direction: column;
+    }
 
-
+    .contenedor-img {
+        flex-basis: auto;
+        width: 100%;
+    }
+}
 
 
 /*Estilo del footer*/
