@@ -160,7 +160,7 @@ public class Menu {
 		System.out.println("1. Añadir nuevo Producto");
 		System.out.println("2. Modificar Producto");
 		System.out.println("3. Eliminar Producto");
-		System.out.println("4. Salir");
+		System.out.println("4. Salir del Modo Empleado");
 	}
 
 }
