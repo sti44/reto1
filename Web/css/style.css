@@ -195,7 +195,7 @@ nav a:hover {
 }
 
 /* Cambio a columna cuando la ventana tenga 700px o menos*/
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     .producto {
         flex-direction: column;
     }
@@ -204,6 +204,7 @@ nav a:hover {
         flex-basis: auto;
         width: 100%;
     }
+
 }
 
 
