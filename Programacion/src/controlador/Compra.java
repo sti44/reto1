@@ -1,9 +1,13 @@
 package controlador;
 
+import java.util.Scanner;
+
 public class Compra {
 	public static String[] carrito = new String[50];
 	public static double[] preciosCarrito = new double[50];
 	public static int cantidadProductos = 0;
+
+	private static Scanner sc = new Scanner(System.in);
 
 	public static void anadirProducto(String producto, double precio) {
 		if (cantidadProductos < carrito.length) {
@@ -17,7 +21,7 @@ public class Compra {
 
 	public static double total = 0;
 
-	public static double dineroIntroducido = 0;
+	public static double dineroIntroucidoTotal = 0;
 
 	public static void mostrarProductosSeleccionados() {
 		if (cantidadProductos == 0) {
@@ -31,30 +35,31 @@ public class Compra {
 
 	public static void mostrarProductosConIVA() {
 		if (cantidadProductos == 0) {
-            System.out.println("No hay productos en el carrito.");
-            return;
-        }
-		
+			System.out.println("No hay productos en el carrito.");
+			return;
+		}
+
 		double subtotalGeneral = 0.0;
-        double totalConIvaGeneral = 0.0;
+		double totalConIvaGeneral = 0.0;
 
-        for (int i = 0; i < cantidadProductos; i++) {
-            String nombre = carrito[i];
-            double precioSinIva = preciosCarrito[i];
-            
-            double precioConIva = precioSinIva * 1.21;
-            subtotalGeneral += precioSinIva;
-            totalConIvaGeneral += precioConIva;
+		for (int i = 0; i < cantidadProductos; i++) {
+			String nombre = carrito[i];
+			double precioSinIva = preciosCarrito[i];
 
-            System.out.printf("- %s \t Precio: %.2f € \t Precio con IVA(21%%): %.2f €%n", nombre, precioSinIva, precioConIva);
-        }
+			double precioConIva = precioSinIva * 1.21;
+			subtotalGeneral += precioSinIva;
+			totalConIvaGeneral += precioConIva;
 
-        System.out.println("----------------------------------------------");
-        System.out.printf("SUBTOTAL: %.2f €%n", subtotalGeneral);
-        System.out.printf("TOTAL A PAGAR (con IVA): %.2f €%n", totalConIvaGeneral);
-        System.out.println("==============================================");
+			System.out.printf("- %s \t Precio: %.2f € \t Precio con IVA(21%%): %.2f €%n", nombre, precioSinIva,
+					precioConIva);
+		}
+
+		System.out.println("----------------------------------------------");
+		System.out.printf("SUBTOTAL: %.2f €%n", subtotalGeneral);
+		System.out.printf("TOTAL A PAGAR (con IVA): %.2f €%n", totalConIvaGeneral);
+		System.out.println("==============================================");
 	}
-	
+
 	public static void vaciarCarrito() {
 		cantidadProductos = 0;
 		for (int i = 0; i < carrito.length; i++) {
@@ -62,12 +67,13 @@ public class Compra {
 			preciosCarrito[i] = 0.0;
 		}
 	}
-	
+
 	public static void mostrarProcesoDePago() {
 		System.out.println("********************************");
 		System.out.println("hola soy el proceso de pago jeje");
 		System.out.println("********************************");
 
+		meterDinero();
 	}
 
 	public static void calcularPago() {
@@ -94,7 +100,7 @@ public class Compra {
 
 	}
 
-	public static void meterDinero() {
+	public static double meterDinero() {
 
 		total = 0;
 
@@ -106,15 +112,31 @@ public class Compra {
 
 		System.out.println("====== INTRODUCIR DINERO =====");
 		System.out.println("Cantidad de productos: " + cantidadProductos);
-		System.out.println("Total con IVA: %.2f" + total);
+		System.out.printf("Total con IVA: %.2f", total);
+		System.out.println();
 
 		for (int i = 0; i < dineroPermitido.length; i++) {
-			System.out.printf("Introducir", i + 1, dineroPermitido[i]);
+			System.out.printf("Introducir \t %5.2f \n", dineroPermitido[i]);
 
 		}
+
+		boolean dineroSuficiente = false;
+		double dineroIntroducidoTotal = 0;
+		do {
+			System.out.println("===== Introduce las monedas validas =====");
+			double dineroIntroducido = Double.parseDouble(sc.nextLine());
+			dineroIntroducidoTotal += dineroIntroducido;
+			System.out.println(dineroIntroducidoTotal);
+			if (dineroIntroducidoTotal >= total) {
+				devolverDinero(dineroIntroducidoTotal);
+				dineroSuficiente = true;
+			}
+		} while (!dineroSuficiente);
+
+		return dineroIntroducidoTotal;
 	}
 
-	public static void devolverDinero() {
+	public static void devolverDinero(double dineroIntroducidoTotal) {
 
 	}
 

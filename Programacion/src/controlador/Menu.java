@@ -15,9 +15,9 @@ public class Menu {
 		System.out.println("*  Bienvenido a la máquina Elorrieta Vending  *");
 		System.out.println("***********************************************");
 		System.out.println();
-		System.out.println("Presione cualquier tecla para continuar...");
-		sc.nextLine();
-		mostrarTipoProductos();
+//		System.out.println("Presione cualquier tecla para continuar...");
+//		sc.nextLine();
+//		mostrarTipoProductos();
 		System.out.println("Presione cualquier tecla y ENTER para continuar...");
 	}
 
