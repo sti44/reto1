@@ -46,6 +46,7 @@ public class Menu {
 				System.out.println("Introduce un numero valido");
 			}
 		}
+		// convertirlo en metodo 
 		// Validacion de la opcion de salir para usuario
 		if (opcion == 5) {
 			System.out.println("¿Desea salir? \n Pulse S si si \n Pulse N si no");
@@ -81,6 +82,7 @@ public class Menu {
 		case 4:
 			System.out.println("=============== Snacks ===============");
 			break;
+			//añadir la opcion de salir
 		default:
 			System.out.println("Numero seleccionado incorrecto");
 			mostrarTipoProductos();
