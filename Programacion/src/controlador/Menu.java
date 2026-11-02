@@ -18,6 +18,7 @@ public class Menu {
 		System.out.println("Presione cualquier tecla para continuar...");
 		sc.nextLine();
 		mostrarTipoProductos();
+		System.out.println("Presione cualquier tecla y ENTER para continuar...");
 	}
 
 	// Mostrar los tipos de productos
@@ -51,7 +52,7 @@ public class Menu {
 			String respuesta = sc.nextLine().trim().toUpperCase();
 			
 			if (respuesta.equals("S")) {
-				mostrarBienvenida();
+				Admin.tipoUser();
 			} else if (respuesta.equals("N")) {
 				mostrarTipoProductos();
 			} else {
@@ -158,6 +159,7 @@ public class Menu {
         }
 	}
 	
+	// Muestra el menú del Modo Empleado
 	public static void mostrarMenuAdmin() {
 		System.out.println("===============================================");
 		System.out.println("             Opciones de Empleado              ");
@@ -171,6 +173,15 @@ public class Menu {
 		System.out.println("2. Modificar Producto");
 		System.out.println("3. Eliminar Producto");
 		System.out.println("4. Salir del Modo Empleado");
+	}
+	
+	// Muestra el menú para modificar un producto por Admin
+	public static void menuModificarProducto() {
+	    System.out.println("\n¿Qué desea modificar?");
+	    System.out.println("1. Nombre");
+	    System.out.println("2. Precio");
+	    System.out.println("3. Código");
+	    System.out.println("4. Volver al menú del Modo Empleado");
 	}
 
 }
