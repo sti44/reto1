@@ -29,6 +29,40 @@ public class Compra {
 		}
 	}
 
+	public static void mostrarProductosConIVA() {
+		if (cantidadProductos == 0) {
+            System.out.println("No hay productos en el carrito.");
+            return;
+        }
+		
+		double subtotalGeneral = 0.0;
+        double totalConIvaGeneral = 0.0;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+            String nombre = carrito[i];
+            double precioSinIva = preciosCarrito[i];
+            
+            double precioConIva = precioSinIva * 1.21;
+            subtotalGeneral += precioSinIva;
+            totalConIvaGeneral += precioConIva;
+
+            System.out.printf("- %s \t Precio: %.2f € \t Precio con IVA(21%%): %.2f €%n", nombre, precioSinIva, precioConIva);
+        }
+
+        System.out.println("----------------------------------------------");
+        System.out.printf("SUBTOTAL: %.2f €%n", subtotalGeneral);
+        System.out.printf("TOTAL A PAGAR (con IVA): %.2f €%n", totalConIvaGeneral);
+        System.out.println("==============================================");
+	}
+	
+	public static void vaciarCarrito() {
+		cantidadProductos = 0;
+		for (int i = 0; i < carrito.length; i++) {
+			carrito[i] = null;
+			preciosCarrito[i] = 0.0;
+		}
+	}
+	
 	public static void mostrarProcesoDePago() {
 		System.out.println("********************************");
 		System.out.println("hola soy el proceso de pago jeje");

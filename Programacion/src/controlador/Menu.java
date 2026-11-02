@@ -16,6 +16,8 @@ public class Menu {
 		System.out.println("***********************************************");
 		System.out.println();
 		System.out.println("Presione cualquier tecla para continuar...");
+		sc.nextLine();
+		mostrarTipoProductos();
 	}
 
 	// Mostrar los tipos de productos
@@ -112,20 +114,26 @@ public class Menu {
 	}
 
 	public static void opcionProductos(int opcion) {
-		for (int i = 0; i < Modelo.productos[opcion].length; i++) {
-			System.out.printf("%d. %s \t %.2f €%n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
-		}
-		System.out.println("Selecciona el producto que deseas comprar:");
-
-		int seleccion = Integer.valueOf(sc.nextLine());
-		if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
-			Compra.anadirProducto(Modelo.productos[opcion][seleccion - 1], Modelo.precios[opcion][seleccion - 1]);
-			System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
-			Compra.mostrarProductosSeleccionados();
-		} else if (seleccion > 4){
-			System.out.println("Opcion no valida, vuelva a intentarlo.");
-		} else {
-			opcionProductos(opcion);
+		boolean productoValido = false;
+		while(!productoValido) {	
+			for (int i = 0; i < Modelo.productos[opcion].length; i++) {
+				System.out.printf("%d. %s \t %.2f €%n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
+			}
+			System.out.println("Selecciona el producto que deseas comprar:");
+			try {
+				int seleccion = Integer.valueOf(sc.nextLine());
+				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
+					Compra.anadirProducto(Modelo.productos[opcion][seleccion - 1], Modelo.precios[opcion][seleccion - 1]);
+					System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
+					Compra.mostrarProductosSeleccionados();
+					productoValido=true;
+				} else{
+					System.out.println("Opcion no valida, vuelva a intentarlo.");
+				}
+			}catch(NumberFormatException e) {
+				System.out.println("Introduce un numero valido");
+			}
+			
 		}
 	}
 
@@ -135,13 +143,15 @@ public class Menu {
 		System.out.println("*	  hola soy el carrito jeje	   *");
 		System.out.println("*	  	                           *");
 		System.out.println("********************************************");
-		Compra.mostrarProductosSeleccionados();
+		Compra.mostrarProductosConIVA();
 		System.out.println("Desea comprar los productos seleccionados? (S/N)");
 		
 		String respuesta = sc.nextLine().trim().toUpperCase();
         if (respuesta.equals("S")) {	
         	Compra.mostrarProcesoDePago();
         } else if (respuesta.equals("N")) {
+        	System.out.println("Vaciando carrito...");
+        	Compra.vaciarCarrito();
         	mostrarBienvenida();
         } else {
         	System.out.println("Opcion incorrecta, introduce 'S' o 'N'");
