@@ -128,16 +128,25 @@ public class Compra {
 			dineroIntroducidoTotal += dineroIntroducido;
 			System.out.println(dineroIntroducidoTotal);
 			if (dineroIntroducidoTotal >= total) {
-				devolverDinero(dineroIntroducidoTotal);
+				dineroIntroducidoTotal -= total;
 				dineroSuficiente = true;
 			}
 		} while (!dineroSuficiente);
 
+	
 		return dineroIntroducidoTotal;
 	}
 
 	public static void devolverDinero(double dineroIntroducidoTotal) {
 
+		while () {
+			
+		}
+		if (dineroIntroducidoTotal >= total) {
+			System.out.println("Gracias por su compra");
+			
+		}
+		
 	}
 
 }
