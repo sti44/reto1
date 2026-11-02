@@ -5,7 +5,7 @@ import java.util.Scanner;
 import modelo.Modelo;
 
 public class Menu {
-
+	
 	private static Scanner sc = new Scanner(System.in);
 
 	// Mostrar la bienvenida

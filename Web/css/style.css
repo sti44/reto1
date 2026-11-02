@@ -204,6 +204,10 @@ nav a:hover {
         flex-basis: auto;
         width: 100%;
     }
+    
+    #contacto {
+        margin: 10rem;
+    }
 
 }
 

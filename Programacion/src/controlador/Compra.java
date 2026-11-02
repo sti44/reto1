@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Compra {
@@ -78,11 +79,11 @@ public class Compra {
 
 	public static void calcularPago() {
 		mostrarProductosSeleccionados();
-		double total = 0;
 
 	}
 
-	public static double[] dineroPermitido = { 0.10, 0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00 };
+	public static double[] dineroPermitido = { 0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00,
+			50.00 };
 
 	public static void eliminarProductos(int borrarProducto) {
 
@@ -133,20 +134,31 @@ public class Compra {
 			}
 		} while (!dineroSuficiente);
 
-	
 		return dineroIntroducidoTotal;
 	}
 
-	public static void devolverDinero(double dineroIntroducidoTotal) {
+	public static void devolverDinero() {
 
-		while () {
-			
+		double total = 10;
+		double dineroIntroducido = 138.98;
+		double[] dineroPermitido = { 0.01, 0.05, 0.10, 0.25, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00 };
+
+		if (dineroIntroducido < total) {
+			System.out.println("Dinero insuficiente. Por favor, introduzca más dinero.");
+		} else {
+			double cambio = dineroIntroducido - total;
+			System.out.println("Cambio a devolver: " + cambio);
+			System.out.println("Desglose del cambio:");
+
+			for (int i = dineroPermitido.length - 1; i >= 0; i--) {
+				int cantidadMonedas = (int) (cambio / dineroPermitido[i]);
+				if (cantidadMonedas > 0) {
+					System.out.println(cantidadMonedas + " moneda(s) de " + dineroPermitido[i]);
+					cambio -= cantidadMonedas * dineroPermitido[i];
+				}
+			}
 		}
-		if (dineroIntroducidoTotal >= total) {
-			System.out.println("Gracias por su compra");
-			
-		}
-		
+
 	}
 
 }
