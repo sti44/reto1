@@ -49,21 +49,32 @@ public class Menu {
 		// convertirlo en metodo 
 		// Validacion de la opcion de salir para usuario
 		if (opcion == 5) {
-			System.out.println("¿Desea salir? \n Pulse S si si \n Pulse N si no");
-			String respuesta = sc.nextLine().trim().toUpperCase();
+			System.out.println("¿Desea salir? (Introduce 'S' para si o 'N' para no)");
+			boolean quiereSalir = preguntarSalida();
 			
-			if (respuesta.equals("S")) {
+			if (quiereSalir) {
 				Admin.tipoUser();
-			} else if (respuesta.equals("N")) {
-				mostrarTipoProductos();
 			} else {
-				System.out.println("Esta mal, di si o no we");
+				mostrarTipoProductos();
 			}
 			
 		} else {
 			opcionTipoProductos(opcion);
 		}
 		return opcion;
+	}
+
+	private static boolean preguntarSalida() {
+		String respuesta = sc.nextLine().trim().toUpperCase();
+		
+		if (respuesta.equals("S")) {
+			return true; 
+		} else if (respuesta.equals("N")) {
+			return false;
+		} else {
+			System.out.println("Opcion incorrecta, por favor introduce 'S' o 'N'.");
+		}
+		return preguntarSalida();
 	}
 
 	// Mostrar los productos de cada tipo
@@ -81,11 +92,6 @@ public class Menu {
 			break;
 		case 4:
 			System.out.println("=============== Snacks ===============");
-			break;
-			//añadir la opcion de salir
-		default:
-			System.out.println("Numero seleccionado incorrecto");
-			mostrarTipoProductos();
 			break;
 		}
 		opcionProductos(opcionTipo);
@@ -123,6 +129,7 @@ public class Menu {
 				System.out.printf("%d. %s \t %.2f €%n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
 			}
 			System.out.println("Selecciona el producto que deseas comprar:");
+			
 			try {
 				int seleccion = Integer.valueOf(sc.nextLine());
 				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
@@ -132,9 +139,23 @@ public class Menu {
 					productoValido=true;
 				} else{
 					System.out.println("Opcion no valida, vuelva a intentarlo.");
+					boolean quiereSalir = preguntarSalida();
+					
+					if (quiereSalir) {
+						Admin.tipoUser();
+					} else {
+						mostrarTipoProductos();
+					}
 				}
 			}catch(NumberFormatException e) {
 				System.out.println("Introduce un numero valido");
+				System.out.println("¿Desea salir? (Introduce 'S' para si o 'N' para no)");
+				boolean quiereSalir = preguntarSalida();
+				if(quiereSalir) {
+					Admin.tipoUser();
+				}else {
+					mostrarTipoProductos();
+				}
 			}
 			
 		}
