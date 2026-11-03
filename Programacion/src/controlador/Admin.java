@@ -14,8 +14,11 @@ public class Admin {
 	// admin.
 	// No coincide con el usuario: muestra los tipos de productos para el usuario
 	// estándar
-	public static void tipoUser() {
+	public static void iniciaTipoUsuario() {
+
 		Menu.mostrarBienvenida();
+		// Usuario Admin: ñu
+		// Clave Admin: creeper
 		String usuarioIntroducido = sc.nextLine();
 
 		if (usuarioIntroducido.equalsIgnoreCase(Admin.userAdmin)) {
@@ -48,37 +51,49 @@ public class Admin {
 			System.out.println("");
 			adminValidado = true;
 		} else {
-			System.out.println("Contraseña Incorrecta.");
+			System.out.println("Contraseña Incorrecta. Volviendo al Inicio...");
 			System.out.println();
 			adminValidado = false;
 		}
 		return adminValidado;
 	}
 
+	// El menú de opciones se repite hasta que se elija la opción 4
+	// Cuando las acciones del switch terminan se vuelve al bucle
 	public static void opcionesAdmin() {
-		Menu.mostrarMenuAdmin();
-		int opcion = -1;
-		switch (accionValidaAdmin(opcion)) {
-		case 1:
-			System.out.println("Añadir nuevo Producto");
-			nuevoProducto();
-			break;
-		case 2:
-			System.out.println("Modificar Producto");
-			modificarProducto();
-			break;
-		case 3:
-			System.out.println("Eliminar Producto");
-			eliminarProducto();
-			break;
-		case 4:
-			salirModoAdmin();
-			break;
-		default:
-			System.out.println("Número seleccionado incorrecto");
-			break;
-		}
 
+		int opcion = -1;
+
+		while (opcion != 4) {
+			Menu.mostrarMenuAdmin();
+
+			opcion = accionValidaAdmin(opcion);
+
+			switch (opcion) {
+			case 1:
+				System.out.println("Añadir Nuevo Producto Seleccionado");
+				nuevoProducto();
+				break;
+			case 2:
+				System.out.println("Modificar Producto Seleccionado");
+				modificarProducto();
+				break;
+			case 3:
+				System.out.println("Eliminar Producto Seleccionado");
+				eliminarProducto();
+				break;
+			case 4:
+				if (salirModoAdmin()) {
+					opcion = 4;
+				} else {
+					opcion = -1;
+				}
+				break;
+			default:
+				System.out.println("Número seleccionado incorrecto");
+				break;
+			}
+		}
 	}
 
 	// Valida si la acción de Admin introducida es un número que se encuentra entre
@@ -132,16 +147,19 @@ public class Admin {
 
 	// Validación para salir del Modo Admin. Vuelve al menú de Bienvenida del
 	// inicio.
-	public static void salirModoAdmin() {
+	public static boolean salirModoAdmin() {
 		System.out.println("¿Desea salir del Modo Empleado? \n Salir \n Continuar");
 		String respuesta = sc.nextLine().trim().toUpperCase();
 
 		if (respuesta.equalsIgnoreCase("salir")) {
-			tipoUser();
+			iniciaTipoUsuario();
+			return true;
 		} else if (respuesta.equalsIgnoreCase("continuar")) {
-			opcionesAdmin();
+			System.out.println("¡Continuamos en el Modo Empleado!");
+			return false;
 		} else {
 			System.out.println("Opción no válida, escriba salir o continuar, por favor.");
+			return false;
 		}
 
 	}
@@ -183,11 +201,7 @@ public class Admin {
 				opcion = Integer.valueOf(sc.nextLine());
 
 				if (opcion >= 1 && opcion <= 4) {
-					if (comprobarHuecosProducto(opcion - 1) == -1) {
-						return 0;
-					} else {
-						valido = true;
-					}
+					valido = true;
 				} else if (opcion == 5) {
 					if (salirOpcionAdmin()) {
 						return 0;
@@ -207,12 +221,20 @@ public class Admin {
 	// Método con las opciones para añadir productos
 	public static void nuevoProducto() {
 		int tipoProductoElegido = validaTipoDeProductoAdmin();
+
+		if (tipoProductoElegido == 0) {
+			return;
+		}
+
 		int indexTipoProductoElegido = tipoProductoElegido - 1;
 
-		switch (tipoProductoElegido) {
-		case 0:
+		if (comprobarHuecosProducto(indexTipoProductoElegido) == -1) {
 			opcionesAdmin();
-			break;
+			return;
+		}
+
+		switch (tipoProductoElegido) {
+
 		case 1:
 
 		case 2:
@@ -222,26 +244,11 @@ public class Admin {
 		case 4:
 			listaProductosActuales(indexTipoProductoElegido);
 			añadirProducto(indexTipoProductoElegido);
-			opcionesAdmin();
 			break;
 
 		default:
 			System.out.println("Seleccione un tipo de producto válido, por favor.");
 			break;
-		}
-
-	}
-
-	// Mostrar la lista de los productos que tenemos actualmente
-	public static void listaProductosActuales(int indexTipoProductoElegido) {
-		System.out.println();
-		System.out.println("Lista de productos actuales: ");
-
-		for (int i = 0; i < modelo.Modelo.productos[indexTipoProductoElegido].length; i++) {
-			if (!modelo.Modelo.productos[indexTipoProductoElegido][i].isEmpty()) {
-				System.out.printf("%d. %s \t %.2f €%n", (i + 1), modelo.Modelo.productos[indexTipoProductoElegido][i],
-						modelo.Modelo.precios[indexTipoProductoElegido][i]);
-			}
 		}
 
 	}
@@ -259,6 +266,7 @@ public class Admin {
 		String codigo = validarCodigo(-1, -1);
 		modelo.Modelo.codigos[indexTipoProductoElegido][indice] = codigo;
 
+		System.out.println();
 		System.out.println("Nombre de producto añadido: " + nombre);
 		System.out.printf("Precio de producto añadido: %.2f €%n", precio);
 		System.out.println("Código de producto añadido: " + codigo);
@@ -270,12 +278,16 @@ public class Admin {
 		int tipoProductoElegido = validaTipoDeProductoAdmin();
 
 		if (tipoProductoElegido == 0) {
-			opcionesAdmin();
 			return;
 		}
 
 		int indexTipoProductoElegido = tipoProductoElegido - 1;
 		int indexProducto = validaProductoElegido(indexTipoProductoElegido);
+
+		if (indexProducto == -1) {
+			return;
+		}
+
 		int opcionModificar = modificarOpcionValidaAdmin();
 
 		switch (opcionModificar) {
@@ -283,19 +295,24 @@ public class Admin {
 			String nuevoNombre = validarNombre();
 			modelo.Modelo.productos[indexTipoProductoElegido][indexProducto] = nuevoNombre;
 			System.out.println("Nombre modificado correctamente.");
+			System.out.println();
+			listaProductosActuales(indexTipoProductoElegido);
 			break;
 		case 2:
 			double nuevoPrecio = validarPrecio();
 			modelo.Modelo.precios[indexTipoProductoElegido][indexProducto] = nuevoPrecio;
 			System.out.println("Precio modificado correctamente.");
+			System.out.println();
+			listaProductosActuales(indexTipoProductoElegido);
 			break;
 		case 3:
 			String nuevoCodigo = validarCodigo(indexTipoProductoElegido, indexProducto);
 			modelo.Modelo.codigos[indexTipoProductoElegido][indexProducto] = nuevoCodigo;
 			System.out.println("Código modificado correctamente.");
+			System.out.println();
+			listaProductosActuales(indexTipoProductoElegido);
 			break;
 		case 4:
-			opcionesAdmin();
 			break;
 		}
 	}
@@ -305,41 +322,43 @@ public class Admin {
 		int tipoProductoElegido = validaTipoDeProductoAdmin();
 
 		if (tipoProductoElegido == 0) {
-			opcionesAdmin();
 			return;
 		}
-		
+
 		int indexTipoProductoElegido = tipoProductoElegido - 1;
 		int indexProducto = validaProductoElegido(indexTipoProductoElegido);
-		
+
+		if (indexProducto == -1) {
+			return;
+		}
+
 		System.out.println("¿Está seguro de que desea eliminar este producto? \n S para eliminar \n N para mantener)");
 		String respuesta = sc.nextLine().trim();
 
 		if (respuesta.equalsIgnoreCase("S")) {
-		    desplazarProducto(indexTipoProductoElegido, indexProducto);
-		    System.out.println("Producto eliminado correctamente.");
+			desplazarProducto(indexTipoProductoElegido, indexProducto);
+			System.out.println("Producto eliminado correctamente.");
 		} else {
-		    System.out.println("Eliminación cancelada.");
+			System.out.println("Eliminación cancelada.");
 		}
 		listaProductosActuales(indexTipoProductoElegido);
 	}
-	
-	// Método para desplazar los productos del array hacia la posición de su izquierda 
+
+	// Método para desplazar los productos del array hacia la posición de su
+	// izquierda
 	// y eliminar el dato duplicado que queda en la última posición.
 	public static void desplazarProducto(int indexTipoProductoElegido, int indexProducto) {
 		// Desplazar productos
 		for (int i = indexProducto; i < modelo.Modelo.maxProductos - 1; i++) {
 
-	        modelo.Modelo.productos[indexTipoProductoElegido][i] =
-	                modelo.Modelo.productos[indexTipoProductoElegido][i + 1];
+			modelo.Modelo.productos[indexTipoProductoElegido][i] = modelo.Modelo.productos[indexTipoProductoElegido][i
+					+ 1];
 
-	        modelo.Modelo.precios[indexTipoProductoElegido][i] =
-	                modelo.Modelo.precios[indexTipoProductoElegido][i + 1];
+			modelo.Modelo.precios[indexTipoProductoElegido][i] = modelo.Modelo.precios[indexTipoProductoElegido][i + 1];
 
-	        modelo.Modelo.codigos[indexTipoProductoElegido][i] =
-	                modelo.Modelo.codigos[indexTipoProductoElegido][i + 1];
-	    }
-		
+			modelo.Modelo.codigos[indexTipoProductoElegido][i] = modelo.Modelo.codigos[indexTipoProductoElegido][i + 1];
+		}
+
 		// Eliminar última posición
 		int ultimaPosicion = modelo.Modelo.maxProductos - 1;
 		modelo.Modelo.productos[indexTipoProductoElegido][ultimaPosicion] = "";
@@ -356,14 +375,18 @@ public class Admin {
 		do {
 			listaProductosActuales(indexTipoProductoElegido);
 
-			System.out.println("\nSeleccione el número del producto que desea modificar:");
+			System.out.println("\nSeleccione el número del producto:");
 
 			try {
 				opcion = Integer.parseInt(sc.nextLine());
 
-				if (opcion >= 1 && opcion <= modelo.Modelo.productos[indexTipoProductoElegido].length
+				if (opcion == 0) {
+					return -1;
+
+				} else if (opcion >= 1 && opcion <= modelo.Modelo.productos[indexTipoProductoElegido].length
 						&& !modelo.Modelo.productos[indexTipoProductoElegido][opcion - 1].isEmpty()) {
 					opcionValida = true;
+
 				} else {
 					System.out.println("Seleccione un producto existente, por favor.");
 				}
@@ -383,7 +406,7 @@ public class Admin {
 		String nombre = "";
 		do {
 			System.out.println("Introduzca el nombre del nuevo producto:");
-			nombre = sc.nextLine();
+			nombre = sc.nextLine().trim();
 			if (nombre.trim().isEmpty()) {
 				System.out.println("El nombre no puede estar vacío, introduzca un nombre válido, por favor.");
 			} else {
@@ -429,7 +452,8 @@ public class Admin {
 
 				for (int fila = 0; fila < modelo.Modelo.codigos.length; fila++) {
 					for (int col = 0; col < modelo.Modelo.codigos[fila].length; col++) {
-						if (modelo.Modelo.codigos[fila][col].equalsIgnoreCase(codigo)
+						if (!modelo.Modelo.codigos[fila][col].isEmpty()
+								&& modelo.Modelo.codigos[fila][col].equalsIgnoreCase(codigo)
 								&& (fila != indexTipoProductoElegido || col != indexProducto)) {
 							codigoExiste = true;
 						}
@@ -451,16 +475,42 @@ public class Admin {
 	// No hay hueco: vuelve al menú de Admin
 	public static int comprobarHuecosProducto(int tipoProductoElegido) {
 
+		int resultado = -1;
+
 		if (modelo.Modelo.productos[tipoProductoElegido][modelo.Modelo.maxProductos - 1].equalsIgnoreCase("")) {
-			System.out.println("Tenemos hueco para un nuevo producto.\n");
+			resultado = tipoProductoElegido;
+			listaProductosActuales(tipoProductoElegido);
+			System.out.println("\n Tenemos hueco para un nuevo producto.\n");
 			if (salirOpcionAdmin()) {
 				return -1;
 			}
 		} else {
-			System.out.println("No tenemos hueco para un nuevo producto.\n");
+			listaProductosActuales(tipoProductoElegido);
+			System.out.println("\n No tenemos hueco para un nuevo producto.\n");
 			return -1;
 		}
-		return tipoProductoElegido;
+		return resultado;
+	}
+
+	// Mostrar la lista de los productos que tenemos actualmente
+	public static void listaProductosActuales(int indexTipoProductoElegido) {
+		System.out.println();
+		System.out.println("Lista de productos actuales: ");
+		System.out.println();
+
+		for (int i = 0; i < modelo.Modelo.productos[indexTipoProductoElegido].length; i++) {
+
+			if (!modelo.Modelo.productos[indexTipoProductoElegido][i].isEmpty()) {
+
+				System.out.printf("%d. %-8s %-20s %.2f €%n", (i + 1),
+						modelo.Modelo.codigos[indexTipoProductoElegido][i],
+						modelo.Modelo.productos[indexTipoProductoElegido][i],
+						modelo.Modelo.precios[indexTipoProductoElegido][i]);
+			}
+		}
+
+		System.out.println();
+		System.out.println("0. Volver al menú de administración");
 	}
 
 }
