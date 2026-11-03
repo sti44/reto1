@@ -16,6 +16,7 @@ public class Admin {
 	// estándar
 	public static void iniciaTipoUsuario() {
 
+		Compra.vaciarCarrito();
 		Menu.mostrarBienvenida();
 		// Usuario Admin: ñu
 		// Clave Admin: creeper
@@ -26,9 +27,6 @@ public class Admin {
 			boolean admin = validarClave();
 			if (admin) {
 				opcionesAdmin();
-				;
-			} else if (!admin) {
-				Menu.mostrarBienvenida();
 			}
 		} else {
 			Menu.mostrarTipoProductos();
