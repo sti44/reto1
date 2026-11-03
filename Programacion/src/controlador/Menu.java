@@ -128,15 +128,16 @@ public class Menu {
 		while (!productoValido) {
 			// Recorre y muestra todos los productos del tipo de producto seleccionado
 			for (int i = 0; i < Modelo.productos[opcion].length; i++) {
-				System.out.printf("%d. %s %10.2f €%n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
+				System.out.printf("%d. %-18s %5.2f €\n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
 			}
 			System.out.println("Selecciona el producto que deseas comprar:");
 			// Excepcion para que introduzca un número válido
 			try {
+				// Recorre los productos
 				int seleccion = Integer.valueOf(sc.nextLine());
 				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
 					String nombreProducto = Modelo.productos[opcion][seleccion - 1];
-
+					// Si el producto seleccionado no está vacio, se muestra los productos que ha seleccionado
 					if (nombreProducto != null && !nombreProducto.isEmpty()) {
 						Compra.anadirProducto(nombreProducto, Modelo.precios[opcion][seleccion - 1]);
 						System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
@@ -144,7 +145,7 @@ public class Menu {
 						productoValido = true;
 					} else {
 						System.out.println("Opcion no valida, vuelva a intentarlo.");
-						// Preguntamos si quiere salir al equivocarse
+						// Sino preguntamos si quiere salir al equivocarse
 						if (preguntarSalida()) {
 							Admin.iniciaTipoUsuario();
 							return;
