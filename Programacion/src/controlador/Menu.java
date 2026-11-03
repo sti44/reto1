@@ -58,21 +58,6 @@ public class Menu {
 		return opcion;
 	}
 
-	// cosa(?)
-	private static boolean preguntarSalida() {
-		System.out.println("¿Desea salir? (Introduce 'S' para si o 'N' para no)");
-		String respuesta = sc.nextLine().trim().toUpperCase();
-
-		if (respuesta.equals("S")) {
-			return true;
-		} else if (respuesta.equals("N")) {
-			return false;
-		} else {
-			System.out.println("Opcion incorrecta, por favor introduce 'S' o 'N'.");
-		}
-		return preguntarSalida();
-	}
-
 	// Mostrar los productos de cada tipo
 	public static void opcionTipoProductos(int opcion) {
 		// Resta a la opcion que pone para mostrar el tipo de producto correcto
@@ -102,10 +87,11 @@ public class Menu {
 		}
 	}
 
-	// cosa
+	// Método para que aparezca la pregunta si quiere añadir más productos
 	public static boolean preguntarMasProductos() {
 		boolean respuestaValida = false;
 		boolean continuarComprando = false;
+		// Bucle hasta que ponga la opción correcta
 		while (!respuestaValida) {
 			System.out.println("\n¿Desea añadir más productos? (Introduce 'S' para si o 'N' para no)");
 			String respuesta = sc.nextLine().trim().toUpperCase();
@@ -121,56 +107,77 @@ public class Menu {
 		}
 		return continuarComprando;
 	}
+	
+	// Método para preguntar si quiere salir
+	private static boolean preguntarSalida() {
+		System.out.println("¿Desea salir? (Introduce 'S' para si o 'N' para no)");
+		String respuesta = sc.nextLine().trim().toUpperCase();
 
-	// Este creo que deberia ir en esa cosa
+		if (respuesta.equals("S")) {
+			return true;
+		} else if (respuesta.equals("N")) {
+			return false;
+		} else {
+			System.out.println("Opcion incorrecta, por favor introduce 'S' o 'N'.");
+		}
+			return preguntarSalida();
+	}
+
+	// Mostrar los productos del tipo de producto seleccionado
 	public static void opcionProductos(int opcion) {
 		boolean productoValido = false;
 		while (!productoValido) {
 			// Recorre y muestra todos los productos del tipo de producto seleccionado
 			for (int i = 0; i < Modelo.productos[opcion].length; i++) {
-				System.out.printf("%d. %-18s %5.2f €\n", (i + 1), Modelo.productos[opcion][i],
-						Modelo.precios[opcion][i]);
+				String nombreProducto = Modelo.productos[opcion][i];
+				if (nombreProducto != null && !nombreProducto.trim().isEmpty()) {
+					System.out.printf("%d. %-18s %5.2f €\n", (i + 1), nombreProducto, Modelo.precios[opcion][i]);
+				}
 			}
+			
 			System.out.println("Selecciona el producto que deseas comprar:");
+			
 			// Excepcion para que introduzca un número válido
 			try {
 				// Recorre los productos
 				int seleccion = Integer.valueOf(sc.nextLine());
-				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
-					String nombreProducto = Modelo.productos[opcion][seleccion - 1];
-					// Si el producto seleccionado no está vacio, se muestra los productos que ha
-					// seleccionado
-					if (nombreProducto != null && !nombreProducto.isEmpty()) {
-						Compra.anadirProducto(nombreProducto, Modelo.precios[opcion][seleccion - 1]);
-						System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
-						Compra.mostrarProductosSeleccionados();
-						productoValido = true;
+					if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
+						String nombreElegido = Modelo.productos[opcion][seleccion -1];
+					
+						// Si el producto seleccionado no está vacio, se muestra los productos que ha
+						// seleccionado
+						if(nombreElegido != null && !nombreElegido.trim().isEmpty()) {
+							Compra.anadirProducto(nombreElegido, Modelo.precios[opcion][seleccion - 1]);
+							System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
+							Compra.mostrarProductosSeleccionados();
+							productoValido = true;
+						} else {
+							System.out.println("Opcion no valida, vuelva a intentarlo.");
+							// Sino preguntamos si quiere salir al equivocarse
+							if (preguntarSalida()) {
+								Admin.iniciaTipoUsuario();
+								return;
+							}
+						}
+				
 					} else {
 						System.out.println("Opcion no valida, vuelva a intentarlo.");
-						// Sino preguntamos si quiere salir al equivocarse
+						// Preguntamos si quiere salir al equivocarse
 						if (preguntarSalida()) {
 							Admin.iniciaTipoUsuario();
 							return;
 						}
-					}
-				} else {
-					System.out.println("Opcion no valida, vuelva a intentarlo.");
-					// Preguntamos si quiere salir al equivocarse
+					}	 
+				} catch (NumberFormatException e) {
+					System.out.println("Introduce un numero valido");
 					if (preguntarSalida()) {
 						Admin.iniciaTipoUsuario();
 						return;
 					}
 				}
-			} catch (NumberFormatException e) {
-				System.out.println("Introduce un numero valido");
-				if (preguntarSalida()) {
-					Admin.iniciaTipoUsuario();
-					return;
-				}
-			}
-
 		}
 	}
+	
 
 	// Muestra el carrito
 	public static void mostrarCarrito() {
