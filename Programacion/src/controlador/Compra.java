@@ -122,17 +122,31 @@ public class Compra {
 
 		boolean dineroSuficiente = false;
 		double dineroIntroducidoTotal = 0;
+
 		do {
 			System.out.println("===== Introduce las monedas validas =====");
-			double dineroIntroducido = Double.parseDouble(sc.nextLine());
-			dineroIntroducidoTotal += dineroIntroducido;
-			System.out.println(dineroIntroducidoTotal);
-			if (dineroIntroducidoTotal >= total) {
-				dineroSuficiente = true;
-			}
-		} while (!dineroSuficiente);
-		devolverDinero(dineroIntroducidoTotal, total);
 
+			try {
+				double dineroIntroducido = Double.parseDouble(sc.nextLine());
+
+				if (dineroIntroducido > 0 && dineroIntroducido <= 50) {
+					dineroIntroducidoTotal += dineroIntroducido;
+					System.out.println(dineroIntroducidoTotal);
+
+					if (dineroIntroducidoTotal >= total) {
+						dineroSuficiente = true;
+					}
+
+				} else {
+					System.out.println("La cantidad debe ser mayor que 0 y como maximo 50 euros.");
+				}
+
+			} catch (NumberFormatException e) {
+				System.out.println("Error: debes introducir un numero.");
+			}
+
+		} while (!dineroSuficiente);
+		// TODO: handle exception
 	}
 
 	public static void devolverDinero(double dineroIntroducidoTotal, double total) {
@@ -151,9 +165,9 @@ public class Compra {
 					cambio -= Double.valueOf(cantidadMonedas * dineroPermitido[i]);
 					if (cambio < 0.01) {
 						dineroDevuelto = true;
-					System.out.println("==============================");
-					System.out.println("Gracias por su compra");
-					System.out.println("==============================");
+						System.out.println("==============================");
+						System.out.println("Gracias por su compra");
+						System.out.println("==============================");
 					}
 				}
 			}
