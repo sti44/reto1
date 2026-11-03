@@ -128,7 +128,8 @@ public class Menu {
 		while (!productoValido) {
 			// Recorre y muestra todos los productos del tipo de producto seleccionado
 			for (int i = 0; i < Modelo.productos[opcion].length; i++) {
-				System.out.printf("%d. %-18s %5.2f €\n", (i + 1), Modelo.productos[opcion][i], Modelo.precios[opcion][i]);
+				System.out.printf("%d. %-18s %5.2f €\n", (i + 1), Modelo.productos[opcion][i],
+						Modelo.precios[opcion][i]);
 			}
 			System.out.println("Selecciona el producto que deseas comprar:");
 			// Excepcion para que introduzca un número válido
@@ -137,7 +138,8 @@ public class Menu {
 				int seleccion = Integer.valueOf(sc.nextLine());
 				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
 					String nombreProducto = Modelo.productos[opcion][seleccion - 1];
-					// Si el producto seleccionado no está vacio, se muestra los productos que ha seleccionado
+					// Si el producto seleccionado no está vacio, se muestra los productos que ha
+					// seleccionado
 					if (nombreProducto != null && !nombreProducto.isEmpty()) {
 						Compra.anadirProducto(nombreProducto, Modelo.precios[opcion][seleccion - 1]);
 						System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
@@ -185,8 +187,8 @@ public class Menu {
 			Compra.mostrarProcesoDePago();
 		} else if (respuesta.equals("N")) {
 			System.out.println("Vaciando carrito...");
-			Compra.vaciarCarrito();
-			mostrarBienvenida();
+			Admin.iniciaTipoUsuario();
+
 		} else {
 			System.out.println("Opcion incorrecta, introduce 'S' o 'N'");
 		}
