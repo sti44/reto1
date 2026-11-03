@@ -5,7 +5,7 @@ import java.util.Scanner;
 import modelo.Modelo;
 
 public class Menu {
-	
+
 	private static Scanner sc = new Scanner(System.in);
 
 	// Mostrar la bienvenida
@@ -57,6 +57,7 @@ public class Menu {
 		}
 		return opcion;
 	}
+
 	// cosa(?)
 	private static boolean preguntarSalida() {
 		System.out.println("¿Desea salir? (Introduce 'S' para si o 'N' para no)");
@@ -90,7 +91,8 @@ public class Menu {
 			System.out.println("=============== Snacks ===============");
 			break;
 		}
-		// Entra en el tipo de producto seleccionado y le pregunta si quiere añadir más productos
+		// Entra en el tipo de producto seleccionado y le pregunta si quiere añadir más
+		// productos
 		opcionProductos(opcionTipo);
 		boolean seguirComprando = preguntarMasProductos();
 		if (seguirComprando) {
@@ -133,28 +135,34 @@ public class Menu {
 			try {
 				int seleccion = Integer.valueOf(sc.nextLine());
 				if (seleccion >= 1 && seleccion <= Modelo.productos[opcion].length) {
-					Compra.anadirProducto(Modelo.productos[opcion][seleccion - 1],
-							Modelo.precios[opcion][seleccion - 1]);
-					System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
-					Compra.mostrarProductosSeleccionados();
-					productoValido = true;
+					String nombreProducto = Modelo.productos[opcion][seleccion - 1];
+
+					if (nombreProducto != null && !nombreProducto.isEmpty()) {
+						Compra.anadirProducto(nombreProducto, Modelo.precios[opcion][seleccion - 1]);
+						System.out.println("\n--- PRODUCTOS SELECCIONADOS ---");
+						Compra.mostrarProductosSeleccionados();
+						productoValido = true;
+					} else {
+						System.out.println("Opcion no valida, vuelva a intentarlo.");
+						// Preguntamos si quiere salir al equivocarse
+						if (preguntarSalida()) {
+							Admin.iniciaTipoUsuario();
+							return;
+						}
+					}
 				} else {
 					System.out.println("Opcion no valida, vuelva a intentarlo.");
-					boolean quiereSalir = preguntarSalida();
-
-					if (quiereSalir) {
+					// Preguntamos si quiere salir al equivocarse
+					if (preguntarSalida()) {
 						Admin.iniciaTipoUsuario();
-					} else {
-						mostrarTipoProductos();
+						return;
 					}
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Introduce un numero valido");
-				boolean quiereSalir = preguntarSalida();
-				if (quiereSalir) {
+				if (preguntarSalida()) {
 					Admin.iniciaTipoUsuario();
-				} else {
-					mostrarTipoProductos();
+					return;
 				}
 			}
 
