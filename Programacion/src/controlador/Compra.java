@@ -129,7 +129,10 @@ public class Compra {
 			try {
 				double dineroIntroducido = Double.parseDouble(sc.nextLine());
 
-				if (dineroIntroducido > 0 && dineroIntroducido <= 50) {
+				if (dineroIntroducido == 0.01 || dineroIntroducido == 0.02 || dineroIntroducido == 0.05
+						|| dineroIntroducido == 0.10 || dineroIntroducido == 0.20 || dineroIntroducido == 0.50
+						|| dineroIntroducido == 1.00 || dineroIntroducido == 2.00 || dineroIntroducido == 5.00
+						|| dineroIntroducido == 10.00 || dineroIntroducido == 20.00 || dineroIntroducido == 50.00) {
 					dineroIntroducidoTotal += dineroIntroducido;
 					System.out.println(dineroIntroducidoTotal);
 
@@ -139,7 +142,7 @@ public class Compra {
 					}
 
 				} else {
-					System.out.println("La cantidad debe ser mayor que 0 y como maximo 50 euros.");
+					System.out.println("La cantidad debe de ser un valor monetario ESPAÑOL");
 				}
 
 			} catch (NumberFormatException e) {
