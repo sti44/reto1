@@ -34,9 +34,8 @@ header {
 
 nav {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
+    padding: 0.5rem;
 }
 
 nav ul {
@@ -44,14 +43,17 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-/* Estilo de los enlaces de navegación tipo botón*/
+/* Enlaces de navegación tipo botón*/
 nav a {
+    display: block;
     color: var(--morado-claro);
     text-decoration: none;
-    padding: 10px 16px;
+    padding: 0.6rem 1rem;
     border-radius: 4px;
     transition: background-color ease-in 0.25s, color ease-in 0.25s;
 }
@@ -62,6 +64,46 @@ nav a:hover {
     color: var(--negro);
 }
 
+/*Footer*/
+footer {
+    background-color: var(--negro);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+#redes-sociales {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer p {
+    color: var(--morado-claro);
+}
+
+footer a {
+    color: var(--morado-claro);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.icono {
+    width: 2.2rem;
+}
+
+.icono:hover {
+    width: 2.8rem;
+}
+
+/*Index.html*/
 /* Adaptamos el tamaño del banner*/
 #banner img {
     display: block;
@@ -146,6 +188,7 @@ nav a:hover {
     padding: 0 1rem;
 }
 
+/*productos-_____.html*/
 /* Estilo título página*/
 .productos-descripcion h1 {
     text-align: center;
@@ -194,7 +237,74 @@ nav a:hover {
     border-radius: 12px;
 }
 
-/* Cambio a columna cuando la ventana tenga 700px o menos*/
+/*contacto.html*/
+/* Estilo a la página completa*/
+.main-contacto {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+#horario,
+#contacto {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+}
+
+#direccion {
+    max-width: 1200px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+#contacto {
+    background-color: var(--fondo-tarjeta);
+}
+
+.canales-contacto,
+.redes-contacto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.canal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.redes-contacto a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--negro);
+    text-decoration: none;
+}
+
+.redes-contacto a:hover {
+    color: var(--rosa-fuerte);
+}
+
+/* El mapa */
+.mapa {
+    text-align: center;
+    width: 100%;
+    height: 20rem;
+    display: flex;
+}
+
+/* Ajuste responsivo*/
 @media (max-width: 900px) {
     .producto {
         flex-direction: column;
@@ -204,84 +314,37 @@ nav a:hover {
         flex-basis: auto;
         width: 100%;
     }
-    
-    #contacto {
-        margin: 10rem;
+
+}
+
+@media (max-width: 600px) {
+    /*Nav*/
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
     }
 
-}
+    nav li {
+        text-align: center;
+    }
 
+    nav a {
+        padding: 0.75rem;
+    }
 
-/*Estilo del footer*/
-footer {
-    background-color: var(--negro);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 4rem;
-}
+    /*contacto.html*/
+    #horario,
+    #contacto,
+    #direccion {
+        padding: 1rem;
+    }
 
-#redes-sociales {
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
+    .mapa {
+        height: 18rem;
+    }
 
-footer p {
-    color: var(--morado-claro);
-}
-
-footer a {
-    color: var(--morado-claro);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-.icono {
-    width: 2.2rem;
-}
-
-.icono:hover {
-    width: 2.8rem;
-}
-
-/* Texto de la página de contactos */
-#horario {
-    text-align: center;
-    justify-content: center;
-}
-
-#contacto {
-    text-align: center;
-    justify-content: center;
-    flex: content;
-    background-color: var(--fondo-tarjeta);
-    padding: 20px;
-    border-radius: 12px;
-    align-items: center;
-    margin: 0 40rem;
-}
-
-#direccion {
-    text-align: center;
-    justify-content: center;
-}
-
-#icono {
-    text-align: center;
-}
-
-/* El mapa */
-.mapa {
-    text-align: center;
-    width: 100%;
-    height: 20rem;
-    display: flex;
-
+    .icono {
+        width: 1.8rem;
+    }
 }
