@@ -135,6 +135,7 @@ public class Compra {
 
 					if (dineroIntroducidoTotal >= total) {
 						dineroSuficiente = true;
+						devolverDinero(dineroIntroducidoTotal, total);
 					}
 
 				} else {
@@ -146,7 +147,7 @@ public class Compra {
 			}
 
 		} while (!dineroSuficiente);
-		// TODO: handle exception
+
 	}
 
 	public static void devolverDinero(double dineroIntroducidoTotal, double total) {
